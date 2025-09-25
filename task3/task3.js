@@ -2,11 +2,11 @@ const http = require('http')
 const url = require('url')
 
 function gcd(a, b) {
-    return b === 0 ? a : gcd(b, a % b)
+    return b === 0n ? a : gcd(b, a % b)
 }
 
 function lcm(a, b) {
-    if (a === 0 || b === 0) return 0
+    if (a === 0n || b === 0n) return 0n
     return (a * b) / gcd(a, b)
 }
 
@@ -14,9 +14,9 @@ const email = "domas0319_gmail_com"
 const server = http.createServer((req, res) => {
     const q = url.parse(req.url, true)
     if (q.pathname === '/' + email) {
-        const x = parseInt(q.query.x)
-        const y = parseInt(q.query.y)
-        if (x >= 0 && y >= 0) {
+        const x = BigInt(q.query.x)
+        const y = BigInt(q.query.y)
+        if (x >= 0n && y >= 0n) {
             res.end(String(lcm(x, y)))
         } else {
             res.end('NaN')
