@@ -15,8 +15,13 @@ const server = http.createServer((req, res) => {
     const q = url.parse(req.url, true)
     if (q.pathname === '/' + email) {
         try {
-            const x = BigInt(q.query.x)
-            const y = BigInt(q.query.y)
+            const {x, y} = q.query
+            if (!x || !y) {
+                res.end('NaN')
+                return
+            }
+            const a = BigInt(x)
+            const b = BigInt(y)
             if (x >= 0n && y >= 0n) {
                 res.end(String(lcm(x, y)))
             } else {
