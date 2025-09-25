@@ -6,6 +6,7 @@ function gcd(a, b) {
 }
 
 function lcm(a, b) {
+    if (a === 0 || b === 0) return 0
     return (a * b) / gcd(a, b)
 }
 
@@ -15,7 +16,7 @@ const server = http.createServer((req, res) => {
     if (q.pathname === '/' + email) {
         const x = parseInt(q.query.x)
         const y = parseInt(q.query.y)
-        if (x > 0 && y > 0) {
+        if (x >= 0 && y >= 0) {
             res.end(String(lcm(x, y)))
         } else {
             res.end('NaN')
