@@ -22,8 +22,8 @@ const server = http.createServer((req, res) => {
             }
             const a = BigInt(x)
             const b = BigInt(y)
-            if (x >= 0n && y >= 0n) {
-                res.end(String(lcm(x, y)))
+            if (a >= 0n && b >= 0n) {
+                res.end(String(lcm(a, b)))
             } else {
                 res.end('NaN')
             }
