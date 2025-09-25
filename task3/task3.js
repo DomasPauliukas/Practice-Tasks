@@ -14,11 +14,15 @@ const email = "domas0319_gmail_com"
 const server = http.createServer((req, res) => {
     const q = url.parse(req.url, true)
     if (q.pathname === '/' + email) {
-        const x = BigInt(q.query.x)
-        const y = BigInt(q.query.y)
-        if (x >= 0n && y >= 0n) {
-            res.end(String(lcm(x, y)))
-        } else {
+        try {
+            const x = BigInt(q.query.x)
+            const y = BigInt(q.query.y)
+            if (x >= 0n && y >= 0n) {
+                res.end(String(lcm(x, y)))
+            } else {
+                res.end('NaN')
+            }
+        } catch {
             res.end('NaN')
         }
     } else {
